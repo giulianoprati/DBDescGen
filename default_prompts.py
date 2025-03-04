@@ -162,22 +162,6 @@ DEFAULT_COLUMN_DESC_GEN_ENGLISH_PROMPT = PromptTemplate(
     prompt_type=PromptType.CUSTOM,
 )
 
-DEFAULT_TABLE_CELL_UNDERSTAND_TMPL = '''你现在是一名数据分析师，给你一张数据表的字段信息和一些数据样例如下：
-
-{table_mschema}
-
-【SQL】
-{sql}
-【Examples】
-{sql_res}
-
-请你仔细阅读并理解该数据表，说明该数据表中的一条记录所表示的业务语义是什么。
-'''
-
-DEFAULT_TABLE_CELL_UNDERSTAND_PROMPT = PromptTemplate(
-    DEFAULT_TABLE_CELL_UNDERSTAND_TMPL,
-    prompt_type=PromptType.CUSTOM,
-)
 
 DEFAULT_UNDERSTAND_DATABASE_TMPL = '''你现在是一名数据分析师，给你一个数据库的Schema如下：
 
