@@ -35,7 +35,7 @@ Take dashscope as an example:
 dashscope_llm = DashScope(model_name=DashScopeGenerationModels.QWEN_PLUS, api_key='YOUR API KEY HERE.')
 ```
 
-3. Generate the database description.
+3. Generate the database description and build M-Schema.
 ```python
 db_name = 'your_db_name'
 comment_mode = 'generation'
