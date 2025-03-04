@@ -23,6 +23,8 @@ pip install -r requirements.txt
 Connect to SQLite:
 ```python
 import os
+from sqlalchemy import create_engine
+
 db_path = "path_to_sqlite"
 abs_path = os.path.abspath(db_path)
 db_engine = create_engine(f'sqlite:///{abs_path}')
@@ -32,11 +34,14 @@ db_engine = create_engine(f'sqlite:///{abs_path}')
 
 Take dashscope as an example:
 ```python
+from llama_index.llms.dashscope import DashScope, DashScopeGenerationModels
 dashscope_llm = DashScope(model_name=DashScopeGenerationModels.QWEN_PLUS, api_key='YOUR API KEY HERE.')
 ```
 
 3. Generate the database description and build M-Schema.
 ```python
+from schema_engine import SchemaEngine
+
 db_name = 'your_db_name'
 comment_mode = 'generation'
 schema_engine_instance = SchemaEngine(db_engine, llm=dashscope_llm, db_name=db_name,
