@@ -24,6 +24,7 @@ db_engine = create_engine(f'sqlite:///{abs_path}')
 ```
 
 2. Set llama-index LLM.
+
 Take dashscope as an example:
 ```python
 dashscope_llm = DashScope(model_name=DashScopeGenerationModels.QWEN_PLUS, api_key='YOUR API KEY HERE.')
@@ -37,7 +38,7 @@ schema_engine_instance = SchemaEngine(db_engine, llm=dashscope_llm, db_name='boo
 schema_engine_instance.fields_category()
 schema_engine_instance.table_and_column_desc_generation()
 mschema = schema_engine_instance.mschema
-mschema.save('./book_1.json')
+mschema.save('./mschema.json')
 mschema_str = mschema.to_mschema()
 print(mschema_str)
 ```
