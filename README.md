@@ -45,9 +45,10 @@ print(mschema_str)
 ```
 
 ## Citation
+If you find our work helpful, feel free to give us a cite.
 
 ```bibtex
-@article{gao2025automaticdatabasedescriptiongeneration,
+@article{description_generation,
       title={Automatic database description generation for Text-to-SQL}, 
       author={Yingqi Gao and Zhiling Luo},
       year={2025},
