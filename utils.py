@@ -89,7 +89,7 @@ def extract_simple_json_from_qwen(qwen_result) -> dict:
     qwen_result=qwen_result.replace('\n', '')
     pattern = r"```json(.*?)```"
 
-    # 使用re.DOTALL标志来使得点号(.)可以匹配包括换行符在内的任意字符
+    # Utilizzare il flag re.DOTALL per consentire al punto (.) di corrispondere a qualsiasi carattere, inclusi i caratteri di nuova riga
     sql_code_snippets = re.findall(pattern, qwen_result, re.DOTALL)
     data={}
     if len(sql_code_snippets) > 0:

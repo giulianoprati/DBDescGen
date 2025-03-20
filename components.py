@@ -122,7 +122,7 @@ def field_category(field_type_cate: str, type_engine: TypeEngine, llm: Optional[
                    field_info_str: str = ''):
     """
     Distinguish field category and whether dimension or measure.
-    is_unique_pk_cons: 是否为主键、外键或者唯一键（包含与其他字段共同构成联合的主键）
+    is_unique_pk_cons: Indica se è una chiave primaria, una chiave esterna o una chiave univoca (inclusa una chiave primaria composta insieme ad altri campi).
     """
     code_res = {"category": type_engine.field_category_code_label,
                 "dim_or_meas": type_engine.dimension_label}
@@ -148,7 +148,7 @@ def field_category(field_type_cate: str, type_engine: TypeEngine, llm: Optional[
             return date_res
         else:
             if field_type_cate == type_engine.field_type_string_label:
-                # 非时间日期类字符串，判断是code、text还是enum
+                # Stringa non di tipo data/ora, determina se è un codice (code), un testo (text) o un'enumerazione (enum)
                 res = call_llm(
                     DEFAULT_STRING_CATEGORY_FIELD_PROMPT, **kwargs
                 ).strip().lower()
@@ -159,7 +159,7 @@ def field_category(field_type_cate: str, type_engine: TypeEngine, llm: Optional[
                 else:
                     return code_res
             elif field_type_cate == type_engine.field_type_number_label:
-                # 非时间日期类的数值，判断是code、measure还是enum
+                # Valore numerico non di tipo data/ora, determina se è un codice (code), una misura (measure) o un'enumerazione (enum).
                 res = call_llm(DEFAULT_NUMBER_CATEGORY_FIELD_PROMPT, **kwargs).strip().lower()
                 if res == 'enum':
                     return enum_res

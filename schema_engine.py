@@ -59,7 +59,7 @@ class SchemaEngine(SQLDatabase):
     def get_table_comment(self, table_name: str):
         try:
             return self._inspector.get_table_comment(table_name, self._schema)['text']
-        except: # sqlite不支持添加注释
+        except: # sqlite does not support adding comments
             return ''
 
     def default_schema_name(self) -> Optional[str]:
@@ -122,7 +122,7 @@ class SchemaEngine(SQLDatabase):
 
     def trunc_result_to_markdown(self, sql_res: Dict) -> str:
         """
-        数据库查询结果转换成markdown格式
+        Convert database query results to markdown format
         """
         truncated_results = sql_res.get("truncated_results", [])
         fields = sql_res.get("fields", [])
@@ -150,10 +150,10 @@ class SchemaEngine(SQLDatabase):
                 result = future.result(timeout=timeout)
                 return result
             except TimeoutError:
-                print(f"SQL执行超时（{timeout}秒）{sql_query}.")
+                print(f"SQL execution timeout ({timeout} seconds) {sql_query}.")
                 return None
             except Exception as e:
-                print("执行SQL时发生异常。", e)
+                print("Exception occurred during SQL execution.", e)
                 return None
 
     def get_protected_table_name(self, table_name: str) -> str:
@@ -421,13 +421,13 @@ class SchemaEngine(SQLDatabase):
 
     def table_and_column_desc_generation(self, language: str='CN'):
         """"
-        table and column description genration
+        table and column description generation
 
-        四种模式：
-        no_comment: 不带任何描述信息
-        origin: 跟数据库中保持一致
-        generation: 清除已有的描述信息，完全由模型生成
-        merge: 没有描述的生成描述信息；已经有描述信息的，不再生成
+        Four modes:
+        no_comment: Without any description information
+        origin: Keeps consistent with the database
+        generation: Clears existing description information and generates entirely new descriptions using the model
+        merge: Generates descriptions for fields without descriptions; does not generate new descriptions for fields that already have them
         """
         if self.comment_mode == 'origin':
             return
